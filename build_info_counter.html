@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>大樓資訊表格</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      position: relative;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    #time-display {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 16px;
+      color: #555;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+
+  <script>
+    // 顯示時間
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('time-display').textContent = "目前時間：" + timeString;
+    }
+
+    // 每秒更新時間
+    setInterval(updateTime, 1000);
+    window.onload = function() {
+      updateTime();
+
+      // 取得目前用電度數，如果不存在就設為10000
+      let electricity = localStorage.getItem('rydElectricity');
+      if (electricity === null) {
+        electricity = 10000;
+      } else {
+        electricity = parseInt(electricity) + 1;
+      }
+      localStorage.setItem('rydElectricity', electricity);
+
+      // 更新頁面中的數值
+      document.getElementById('ryd-electricity').textContent = electricity + "度";
+
+      // 15秒後重新整理
+      setTimeout(function() {
+        location.reload();
+      }, 15000);
+    }
+  </script>
+</head>
+<body>
+
+  <h2>大樓環境與資源監控表</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>大樓名稱</th>
+        <th>用電度數</th>
+        <th>溫度</th>
+        <th>濕度</th>
+        <th>用水量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>人言大樓</td>
+        <td id="ryd-electricity">載入中...</td>
+        <td>24.5度</td>
+        <td>50%</td>
+        <td>3000公升</td>
+      </tr>
+      <tr>
+        <td>科學館</td>
+        <td>8500度</td>
+        <td>25.0度</td>
+        <td>55%</td>
+        <td>2800公升</td>
+      </tr>
+      <tr>
+        <td>行政大樓</td>
+        <td>9200度</td>
+        <td>23.8度</td>
+        <td>48%</td>
+        <td>3100公升</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="time-display"></div>
+
+</body>
+</html>

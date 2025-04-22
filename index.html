@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>跑馬燈</title>
-  <style>
-    .marquee-container {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      background-color: #f8f8f8;
-      border: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    .marquee-text {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 10s linear infinite;
-      font-size: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大樓監控資料</title>
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
       color: #333;
     }
-
-    @keyframes marquee {
-      0%   { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
+    main {
+      max-width: 900px;
+      margin: auto;
     }
-  </style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    caption {
+      caption-side: top;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    th {
+      background-color: #e0e0e0;
+    }
+</style>
 </head>
 <body>
-
-<div class="marquee-container">
-  <div class="marquee-text">人言大樓本月用電度數是10000度</div>
-</div>
-
+<main>
+<section>
+<table>
+<caption>大樓監控資料表</caption>
+<thead>
+<tr>
+<th>大樓名稱</th>
+<th>用電度數</th>
+<th>溫度</th>
+<th>濕度</th>
+<th>用水量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人言大樓</td>
+<td>10000 度</td>
+<td>24.5°C</td>
+<td>50%</td>
+<td>3000 公升</td>
+</tr>
+<tr>
+<td>行政大樓</td>
+<td>8500 度</td>
+<td>25.1°C</td>
+<td>55%</td>
+<td>2800 公升</td>
+</tr>
+<tr>
+<td>圖書館</td>
+<td>9200 度</td>
+<td>23.8°C</td>
+<td>48%</td>
+<td>3100 公升</td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
 </body>
 </html>
